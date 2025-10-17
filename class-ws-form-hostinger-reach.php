@@ -10,6 +10,7 @@ class WS_Form_Hostinger_Reach extends Integration {
      * Unique name for WS Form integration
      */
 	public static function get_name(): string {
+
 		return WS_FORM_NAME;
 	}
 
@@ -23,6 +24,7 @@ class WS_Form_Hostinger_Reach extends Integration {
 
 		// Configure integration
 		return PluginData::from_array([
+
 			'id'                  => $this->get_name(),
 			'title'               => WS_FORM_NAME_GENERIC,
 			'folder'              => WS_FORM_PLUGIN_FOLDER,
@@ -76,9 +78,11 @@ class WS_Form_Hostinger_Reach extends Integration {
 
 			// Build args
 			$args = array(
+
 				'group'    => sprintf( __( '%s: %s', 'ws-form' ), WS_FORM_NAME_GENERIC, $form_object->label ),
 				'email'    => $email,
 				'metadata' => array(
+
 					'plugin'  => WS_FORM_NAME,
 					'form_id' => $form_object->id,
 				),
@@ -135,17 +139,18 @@ class WS_Form_Hostinger_Reach extends Integration {
 
 		// Process forms, returning each as an instance of Hostinger\Reach\Models\Form
 		$forms = array_map(
+
 			function ( $form ) {
-				$form = new Form(
-					array(
-						'form_id'     => $form['id'],
-						'form_title'  => $form['label'],
-						'post_id'     => null,
-						'type'        => $this->get_name(),
-						'is_active'   => true,
-						'submissions' => (int) $form['count_submit'],
-					)
-				);
+
+				$form = new Form([
+
+					'form_id'     => $form['id'],
+					'form_title'  => $form['label'],
+					'post_id'     => null,
+					'type'        => $this->get_name(),
+					'is_active'   => true,
+					'submissions' => (int) $form['count_submit'],
+				]);
 
 				return $form->to_array();
 			},

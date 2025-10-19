@@ -37,7 +37,7 @@ class WS_Form_Hostinger_Reach extends Integration {
 			'icon'                => WS_FORM_URL_ICON,
 			'is_view_form_hidden' => true,
 			'is_edit_form_hidden' => false,
-			'can_toggle_forms'    => true
+			'can_toggle_forms'    => false
 		]);
 	}
 
@@ -79,7 +79,12 @@ class WS_Form_Hostinger_Reach extends Integration {
 			// Build args
 			$args = array(
 
-				'group'    => sprintf( __( '%s: %s', 'ws-form' ), WS_FORM_NAME_GENERIC, $form_object->label ),
+				'group'    => sprintf(
+
+					'%s: %s',
+					WS_FORM_NAME_GENERIC,
+					$form_object->label
+				),
 				'email'    => $email,
 				'metadata' => array(
 
